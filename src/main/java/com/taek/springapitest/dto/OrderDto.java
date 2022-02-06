@@ -6,5 +6,4 @@ import lombok.Getter;
 public class OrderDto {
     private Long restaurantId;
     private Long totalPrice;
-    private Long foodId;
 }

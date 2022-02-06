@@ -6,6 +6,5 @@ import lombok.Getter;
 public class FoodDto {
     private Long restaurantId;
     private String name;
-    private Long price;
-    private Long quantity;
+    //private Long quantity;
 }
