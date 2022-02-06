@@ -22,7 +22,7 @@ public class Orders {
     //private Long restaurantId;
 
     @Column(nullable = false)
-    private Long totalPrice;
+    private int totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")

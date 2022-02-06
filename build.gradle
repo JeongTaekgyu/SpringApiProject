@@ -25,7 +25,11 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
+    // 스프링 부트 테스트를 위한 라이브러리
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // 테스트 코드를 위한 Lombok 라이브러리
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 tasks.named('test') {

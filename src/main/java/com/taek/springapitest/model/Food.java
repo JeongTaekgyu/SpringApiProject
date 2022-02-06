@@ -14,22 +14,18 @@ public class Food {
     @Id
     private Long id;
 
-    //@Column(nullable = false, unique = true)
-    //private Long restaurantId;
-
     @Column(nullable = false)   // 음식명 유니크해?
     private String name;
 
-    //@Column(nullable = false)
-    //private Long price;
-
     @Column(nullable = false)
-    private Long quantity;
+    private Long price;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    //@Column(nullable = false, unique = true)
+    //private Long restaurantId;
 
     /*@ManyToOne  // Food가 restaurant 객체를 가지고 있다.
     @JoinColumn(name = "restaurant_id", nullable = false) // 포함 대상 정보는 restaurant_id 기록!

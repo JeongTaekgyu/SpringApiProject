@@ -17,8 +17,8 @@ public class FoodOrdersInfo {
     @Column(nullable = false)
     private Long quantity;
 
-    @Column(nullable = false)
-    private Long price;
+    //@Column(nullable = false)
+    //private Long price;
 
     @ManyToOne
     @JoinColumn(name = "orders_id")

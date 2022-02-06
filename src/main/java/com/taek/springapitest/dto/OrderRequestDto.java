@@ -4,10 +4,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
-public class FoodOrderRequestDto {
-    Long id;
-    int quantity;
+public class OrderRequestDto {
+    private Long restaurantId;
+    private List<FoodOrderRequestDto> foods;
 }

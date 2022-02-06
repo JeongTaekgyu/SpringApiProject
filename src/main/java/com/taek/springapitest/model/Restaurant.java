@@ -1,13 +1,16 @@
 package com.taek.springapitest.model;
 
+import com.taek.springapitest.dto.RestaurantDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
+@Setter
 @Getter
 @Entity
 public class Restaurant {
@@ -20,12 +23,17 @@ public class Restaurant {
     private String name;
 
     @Column(nullable = false)
-    private Long minOrderPrice;
+    private int minOrderPrice;
 
     @Column(nullable = false)
-    private Long deliveryFee;
+    private int deliveryFee;
 
-
+    public Restaurant(RestaurantDto restaurantDto) {
+        this.id = restaurantDto.getId();
+        this.name = restaurantDto.getName();
+        this.minOrderPrice = restaurantDto.getMinOrderPrice();
+        this.deliveryFee = restaurantDto.getDeliveryFee();
+    }
 
 
     // mappedBy를 통해 restaurant을 주인으로 지정
