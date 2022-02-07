@@ -21,7 +21,7 @@ public class RestaurantService {
 
         if(restaurantDto.getMinOrderPrice() < 1000
                 || restaurantDto.getMinOrderPrice() > 100000){
-            throw new IllegalArgumentException("최소주문 허용가격이 아닙니다.");
+            throw new IllegalArgumentException("최소주문 허용가격이 아닙니다.(허용값: 1,000원 ~ 100,000원)");
         }
 
         if(restaurantDto.getMinOrderPrice() % 100 != 0){
@@ -29,7 +29,7 @@ public class RestaurantService {
         }
 
         if(restaurantDto.getDeliveryFee() <0 || restaurantDto.getDeliveryFee() > 10000){
-            throw new IllegalArgumentException("기본배달비 허용 값이 아닙니다.");
+            throw new IllegalArgumentException("기본배달비 허용 값이 아닙니다.(허용값: 0원 ~ 10,000원)");
         }
 
         if(restaurantDto.getDeliveryFee() % 500 != 0){

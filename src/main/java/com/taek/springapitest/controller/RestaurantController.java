@@ -1,6 +1,7 @@
 package com.taek.springapitest.controller;
 
 import com.taek.springapitest.dto.RestaurantDto;
+import com.taek.springapitest.model.Food;
 import com.taek.springapitest.model.Restaurant;
 import com.taek.springapitest.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class RestaurantController {
         return restaurantService.registerRestaurant(restaurantDto);
     }
 
+    // RestaurantDto 로 반환해도 문제없나?
     @GetMapping("/restaurants")
     public List<Restaurant> getRestaurantInfo(){
         return restaurantService.getRestaurantList();

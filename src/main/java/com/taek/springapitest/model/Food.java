@@ -1,13 +1,18 @@
 package com.taek.springapitest.model;
 
+import com.taek.springapitest.dto.FoodDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@AllArgsConstructor // @Builder 사용하려면 이게 있어야 하는데 왜지?
 @NoArgsConstructor
 @Getter
 @Entity
+@Builder
 public class Food {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +23,18 @@ public class Food {
     private String name;
 
     @Column(nullable = false)
-    private Long price;
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+
+    public Food(FoodDto foodDto){
+        this.id = foodDto.getRestaurantId();
+        this.name = foodDto.getName();
+        this.price = foodDto.getPrice();
+
+    }
 
     //@Column(nullable = false, unique = true)
     //private Long restaurantId;

@@ -1,5 +1,7 @@
 package com.taek.springapitest.dto;
 
+import com.taek.springapitest.model.Food;
+import com.taek.springapitest.model.Restaurant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +14,15 @@ public class FoodDto {
     //private Long restaurantId;
     //private String name;
 
-    private Long id;
+    private Long restaurantId;
     private String name;
     private int price;
+
+    public Food toEntity(Restaurant restaurant){
+        return Food.builder()
+                .restaurant(restaurant)
+                .name(this.name)
+                .price(this.price)
+                .build();
+    }
 }
