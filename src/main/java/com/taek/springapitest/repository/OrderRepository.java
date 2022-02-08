@@ -1,4 +1,7 @@
 package com.taek.springapitest.repository;
 
-public interface OrderRepository {
+import com.taek.springapitest.model.Orders;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepository extends JpaRepository<Orders, Long> {
 }

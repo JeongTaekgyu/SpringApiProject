@@ -44,7 +44,7 @@ public class FoodService {
                 throw new IllegalArgumentException("같은 음식점 내에서는 음식이름이 중복될 수 없습니다.");
             }
 
-            foodDto.setRestaurantId(restaurantId);
+            foodDto.setRestaurantId(restaurantId); // ★
             foodRepository.save(foodDto.toEntity(restaurant));
         });
 

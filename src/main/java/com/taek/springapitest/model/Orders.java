@@ -1,5 +1,6 @@
 package com.taek.springapitest.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,11 @@ public class Orders {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     //private List<Restaurant> restaurants;
+
+    public Orders(Restaurant restaurant, int totalPrice){
+        this.restaurant = restaurant;
+        this.totalPrice = totalPrice;
+    }
 
     /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "orders", cascade = CascadeType.REMOVE)
     private List<Food> food = new ArrayList<>();
