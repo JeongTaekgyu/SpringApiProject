@@ -33,6 +33,7 @@ public class FoodOrdersInfo {
     @JoinColumn(name = "food_id", nullable = false)
     private Food food;
 
+    // 여긴 Dto 아니니까 toEntity 쓰지마
     /*public FoodOrdersInfo toEntity(Food food){
         return FoodOrdersInfo.builder()
                 .quantity(this.quantity)

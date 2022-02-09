@@ -4,6 +4,8 @@ import com.taek.springapitest.dto.OrderDto;
 import com.taek.springapitest.dto.OrderRequestDto;
 import com.taek.springapitest.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.criterion.Order;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +33,10 @@ public class OrderController {
         }
          */
         return orderService.registerOrders(orderRequestDto);
+    }
+
+    @GetMapping("/orders")
+    public List<OrderDto> getOrderList(){
+        return orderService.getOrderList();
     }
 }

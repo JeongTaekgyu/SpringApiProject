@@ -1,9 +1,6 @@
 package com.taek.springapitest.service;
 
-import com.taek.springapitest.dto.FoodOrderDto;
-import com.taek.springapitest.dto.FoodOrderRequestDto;
-import com.taek.springapitest.dto.OrderDto;
-import com.taek.springapitest.dto.OrderRequestDto;
+import com.taek.springapitest.dto.*;
 import com.taek.springapitest.model.Food;
 import com.taek.springapitest.model.FoodOrdersInfo;
 import com.taek.springapitest.model.Orders;
@@ -13,6 +10,7 @@ import com.taek.springapitest.repository.FoodRepository;
 import com.taek.springapitest.repository.OrderRepository;
 import com.taek.springapitest.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -54,6 +52,7 @@ public class OrderService {
             int foodQuantity = foodOrderRequestDto.getQuantity();
             int foodPriceByQuantity = food.getPrice() * foodQuantity;
 
+            // 이거 foreach문이 아니라 stream 으로 하면 왜 안됐는지 의문이다.
             totalPrice = totalPrice + foodPriceByQuantity;
 
             // foodOrderInfo를 리스트화 시킨다음에 Orders 빼고 넣어준다.
@@ -76,7 +75,7 @@ public class OrderService {
         Orders orders = new Orders(restaurant, totalPrice);
         orderRepository.save(orders);
 
-        // 주문 상세정보 리스트를
+        // 주문 상세정보 리스트를 Orders 포함해서 넣어준다
         for (FoodOrdersInfo foodOrdersInfo: foodOrdersInfoList) {
 
             // orders를 포함한 정보를 다시 넣어준다.
@@ -97,5 +96,39 @@ public class OrderService {
 
         return orderDto;
         //return orderRequestDto;
+    }
+
+    public List<OrderDto> getOrderList() {
+        List<OrderDto> orderResponseDtoList = new ArrayList<>();
+
+        List<Orders> ordersList = orderRepository.findAll();
+
+        // OrderDto에 들어갈 파라미터중 하나인 foodOrdersInfoList 선언
+        List<FoodOrderDto> foodOrderDtoList = new ArrayList<>();
+        
+        for(Orders orders : ordersList){
+            // Orders를 기준으로 foodOrdersInfoList를 가져오기
+            List<FoodOrdersInfo> foodOrdersInfoList = foodOrderInfoRepository.findAllByOrders(orders);
+            for(FoodOrdersInfo foodOrdersInfo : foodOrdersInfoList){
+                int quantity = foodOrdersInfo.getQuantity();
+                int price = foodOrdersInfo.getPrice();
+                Food food = foodOrdersInfo.getFood();
+
+                FoodOrdersInfo foodOrdersInfos = FoodOrdersInfo.builder()
+                        .quantity(foodOrdersInfo.getQuantity())
+                        .price(foodOrdersInfo.getPrice())
+                        .food(foodOrdersInfo.getFood())
+                        .orders(orders) // 위에서 만든 orders 정보를 FoodOrdersInfo에 있는 orders에 넣어준다.
+                        .build();
+
+                FoodOrderDto foodOrderDto = new FoodOrderDto(foodOrdersInfos);
+                foodOrderDtoList.add(foodOrderDto);
+            }
+
+            OrderDto orderDto = new OrderDto(orders, foodOrderDtoList);
+            orderResponseDtoList.add(orderDto);
+        }
+
+        return orderResponseDtoList;
     }
 }
