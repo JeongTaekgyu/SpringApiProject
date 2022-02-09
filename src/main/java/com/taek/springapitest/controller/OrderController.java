@@ -1,10 +1,9 @@
 package com.taek.springapitest.controller;
 
-import com.taek.springapitest.dto.OrderDto;
+import com.taek.springapitest.dto.OrderResDto;
 import com.taek.springapitest.dto.OrderRequestDto;
 import com.taek.springapitest.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.criterion.Order;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +18,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/order/request")
-    public OrderDto registerOrders(@RequestBody OrderRequestDto orderRequestDto){
+    public OrderResDto registerOrders(@RequestBody OrderRequestDto orderRequestDto){
         // @RequestBody List<OrderRequestDto> orderRequestDto 로 안하는 이유는
         // RequestBody 보면 전체로 리스트가 묶인게 아니라 아래와 같이 전송함
         /* 그러므로 Service로 가서 foods에 관한 list를 만들어야한다.
@@ -36,7 +35,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public List<OrderDto> getOrderList(){
+    public List<OrderResDto> getOrderList(){
         return orderService.getOrderList();
     }
 }

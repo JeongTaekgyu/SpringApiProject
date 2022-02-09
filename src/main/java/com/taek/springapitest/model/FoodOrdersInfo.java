@@ -1,6 +1,5 @@
 package com.taek.springapitest.model;
 
-import com.taek.springapitest.dto.FoodOrderDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

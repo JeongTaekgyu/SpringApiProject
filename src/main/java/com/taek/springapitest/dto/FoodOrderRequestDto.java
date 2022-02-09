@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class FoodOrderRequestDto {
-    private Long id;    // foodid
+    private Long id; // foodid
     private int quantity;
     
     // 여기서 name을 못넣어주네
