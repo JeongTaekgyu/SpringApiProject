@@ -22,7 +22,7 @@ public class FoodOrdersInfo {
     private int quantity;
 
     @Column(nullable = false)
-    private int price;
+    private int price;  // food의 price * quantity
 
     @ManyToOne
     @JoinColumn(name = "orders_id", nullable = false)

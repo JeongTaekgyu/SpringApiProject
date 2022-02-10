@@ -73,6 +73,7 @@ public class OrderService {
 
             // builder로 처리한걸 주문 상세정보 리스트에 넣어준다.
             foodOrdersInfoList.add(foodOrdersInfo);
+            // 리스트에 담는이유는 아래 반복문에서 활용하기 위해서다
         }
 
         if(totalPrice - restaurant.getDeliveryFee() < restaurant.getMinOrderPrice()){
@@ -110,6 +111,7 @@ public class OrderService {
 
         return orderResDto;
     }
+
 
     // 주문 조회 - 그동안 성공한 모든 주문 요청을 조회
     public List<OrderResDto> getOrderList() {

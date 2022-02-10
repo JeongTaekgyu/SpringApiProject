@@ -22,7 +22,6 @@ public class FoodService {
 
     @Transactional
     public void registerFood(Long restaurantId, List<FoodDto> foodDtoList){
-        //Food food = new Food(foodDto);
 
         Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(
                 () -> new NullPointerException("음식점 id가 존재하지 않음")
@@ -51,7 +50,7 @@ public class FoodService {
         //return food;
     }
 
-    // jpa구문 2개이상 (논리 연산과정 2개이상은 @Transactional 을 해줘라
+    // jpa구문 2개이상 (논리 연산과정 2개이상은 @Transactional 을 해줘라 - 걍 1개 있어도 @Transactional 붙이자
     // 똑같은 id면 캐쉬에 담아져 있는거 그대로 가져와서 db안들린다 그러므로 @Transactional
     @Transactional
     public List<Food> getRestaurantFoodList(Long restaurantId){
